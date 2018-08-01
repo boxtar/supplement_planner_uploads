@@ -1,0 +1,46 @@
+Run the very slow enquiry RSO - RESBUD Costs per Period.
+
+Once you get your results copy them to Excel.
+
+Filter on blanks in "Period" column and delete them. Now we have a sanitised database to work with.
+
+Use filtering (or whatever you are used to) to copy all data for each Sub-project to its own sheet.
+
+Infront of you is all the FEC and PRICE budgets phased across all headings for the sub-project.
+You can start copying and pasting data over to the planner template.
+
+NOTE: that you'll have to  manually figure out the PBFEC XZ90 Income amounts per period for each
+sub-project (see below, it's easy).
+
+ALSO NOTE: if your project's claim type is Fixed then your PBPRICE budget should all be under XZ90 Income,
+not each budget heading. You can use the process below to get this data.
+
+
+----------------------------
+
+
+How to get Income (XZ90) phasing for PBFEC:
+
+It's simply just the sum of all PRICE amounts for each Resbud per Period.
+
+Insert > Pivot Table. Period as Row. Price as Values. You now have your period and value list.
+
+Remember to negate the amounts - the Income budget against PBFEC should be negative.
+
+Repeat this for each sub-project sheet.
+
+
+NOTE: If project claim type is fixed then you can use the pivot table data for the PBPRICE budget
+as it should all fall under XZ90 - Income.
+
+
+----------------------------
+
+
+JUST INCASE YOU AREN'T AWAKE YET: If the project claim type is fixed then the PBPRICE budget should 
+all be under XZ90 Income. This is actually easy
+
+
+
+
+  
