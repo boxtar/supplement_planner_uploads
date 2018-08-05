@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Supplement Uploads</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Import Google Icon Font-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+    <!-- Bulma CSS Framework -->
+    <link rel="stylesheet" type="text/css" href="./css/bulma.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+
+<body>
+    <!-- Loading Indicator -->
+    <div class="loading-indicator" id="loading-indicator">
+        <div class="indeterminate"></div>
+    </div>
+
+    <div class="container" style="padding: 0.75rem 0;">
+        <div id="app">
+
+            <div id="notification-area" style="padding: 0.75rem 0;"></div>
+
+            <!-- File Upload -->
+            <div class="file is-boxed" id="file-input-container">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="data-file" id="data-file">
+                    <span class="file-cta">
+                        <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                            Choose a .csv file…
+                        </span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- Required Information  -->
+            <div id="required-info-container">
+                <!-- Description -->
+                <div class="field">
+                    <label for="description" class="label">Description</label>
+                    <div class="control">
+                        <input class="input is-link is-large" type="text" id="description" value="Project: 999999 Actual Start: dd/mm/yyyy - Actual End: dd/mm/yyyy">
+                    </div>
+                    <p class="help is-link">Input your project number and actual project dates. This description should be the same as the existing
+                        description used in planner (if any)</p>
+                </div>
+
+                <!-- Claim Type -->
+                <div class="field">
+                    <label for="claim-type" class="label">Claim Type</label>
+                    <div class="control">
+                        <div class="select is-link is-large">
+                            <select name="claim-type" id="claim-type">
+                                <option value="costs-inc">Costs Incurred</option>
+                                <option value="profile">Profile</option>
+                                <option value="fixed">Fixed</option>
+                            </select>
+                        </div>
+                        <button class="button is-large is-link is-outlined" 
+                                style="margin-left: 0.45rem;"
+                                id="proceed-button"
+                                disabled
+                        >Proceed</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="./js/papaparse.min.js"></script>
+    <script type="text/javascript" src="./js/DOM.js"></script>
+    <script type="text/javascript" src="./js/Store.js"></script>
+    <script type="text/javascript" src="./js/SubProject.js"></script>
+    <script type="text/javascript" src="./js/App.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+</body>
+
+</html>
