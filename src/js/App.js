@@ -121,7 +121,7 @@ class App {
     setDescription() {
         let description = this.dom.getRequiredInfoElement("description").value;
         // Some quick and lazy error checking
-        if (description.length !== 65) {
+        if (description.length == 0) {
             this.notifyInvalidDescription();
             return false;
         }
@@ -169,14 +169,6 @@ class App {
     }
 
     notifyInvalidDescription() {
-        this.dom.pushNotification(
-            `
-                Your description isn't correct. It should be in the following format:
-                <br/><i>(note the whitespaces and make sure there is no trailing whitespace)</i>
-                <br/>
-                Project: 999999 Actual Start: dd/mm/yyyy - Actual End: dd/mm/yyyy
-            `,
-            "danger"
-        );
+        this.dom.pushNotification("The description cannot be empty", "danger");
     }
 }
