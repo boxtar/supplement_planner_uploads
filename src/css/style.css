@@ -1,3 +1,24 @@
+.title.main-title {
+    color: #0274af;
+}
+
+#file-input-container .dropzone-container {
+    margin-top: 25px;
+}
+
+#file-input-container .dropzone-container #drop_zone {
+    border: 2px dashed #209cee;
+    border-radius: 5px;
+    padding: 75px 25px;
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+#file-input-container .dropzone-container #drop_zone.hovering {
+    border-style: solid;
+    background-color: white;
+}
+
 .loading-indicator {
     display: none;
     position: relative;

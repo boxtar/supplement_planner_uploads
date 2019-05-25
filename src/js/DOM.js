@@ -22,6 +22,7 @@ class DOM {
         this.fileUploadElements = {
             container: document.getElementById("file-input-container"),
             input: document.getElementById("data-file"),
+            dropzone: document.getElementById("drop_zone"),
         };
         // Elements that are part of the required information gathering step
         this.requiredInfoElements = {
@@ -68,6 +69,10 @@ class DOM {
 
     getFileInputElement() {
         return this.fileUploadElements.input;
+    }
+
+    getDropZoneElement() {
+        return this.fileUploadElements.dropzone;
     }
 
     getProceedButtonElement() {

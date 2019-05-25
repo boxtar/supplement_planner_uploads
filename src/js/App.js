@@ -17,18 +17,23 @@ class App {
         this.store = store;
         this.fields = this.store.getState("inputFields");
         this.fileSelectHandler = e => this.handleFileSelect(e);
+        this.dropZoneDragOver = e => this.handleDragOver(e);
         this.setupEventListeners();
     }
 
     setupEventListeners() {
         try {
-            // Check for the various File API support.
-            if (window.File && window.FileReader && window.FileList && window.Blob) {
-                // When a file is chosen, the process kicks off from handleFileSelect function
-                this.dom.getFileInputElement().addEventListener("change", this.fileSelectHandler, false);
-            } else {
-                throw "File API not supported by your browser <i>(Google Chrome is the best)</i>";
-            }
+            // Setup file select dialog listener
+            this.dom.getFileInputElement().addEventListener("change", this.fileSelectHandler, false);
+
+            // Setup drop zone listeners
+            let dropZone = this.dom.getDropZoneElement();
+            // When user drags over drop zone
+            dropZone.addEventListener("dragover", this.handleDragOver, false);
+            // When user leaves the drop zone
+            dropZone.addEventListener("dragleave", e => e.target.classList.remove("hovering"), false);
+            // When user drops file on the drop zone
+            dropZone.addEventListener("drop", this.fileSelectHandler, false);
         } catch (error) {
             this.dom.die(error);
         }
@@ -39,11 +44,15 @@ class App {
         this.dom.showLoadingIndicator();
         // Setup next stage.
         this.dom.nextStep();
+        // Stop event bubbling.
+        e.stopPropagation();
+        e.preventDefault();
+
         try {
-            let files = e.target.files; // FileList object
+            let files = e.type === "drop" ? e.dataTransfer.files : e.target.files;
             if (files.length > 0) {
                 if (files[0].name.split(".").pop() !== "csv")
-                    throw "File must be of CSV format and have .csv extension";
+                    throw "File must be of CSV format and have .csv extension.<br/>Please refresh and try again...";
                 // Use Papa to parse CSV file:
                 Papa.parse(files[0], {
                     complete: (results, file) => this.processInput(results.data),
@@ -56,6 +65,25 @@ class App {
             }
         } catch (error) {
             this.dom.die(error);
+        }
+    }
+
+    /**
+     * Called when user is dragging/hovering a file over the
+     * drop zone area.
+     *
+     * @param {DragEvent} e
+     */
+    handleDragOver(e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        // Explicitly show this is a copy.
+        e.dataTransfer.dropEffect = "copy";
+
+        // Add relevant class to drop zone if user is dragging over it.
+        if ((" " + e.target.className + " ").replace(/[\n\t]/g, " ").indexOf(" hovering ") < 0) {
+            e.target.classList.add("hovering");
         }
     }
 
